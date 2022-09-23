@@ -195,9 +195,9 @@ public class FormRegisto extends javax.swing.JFrame {
             if(!validaCampoAlfabeto(nome)){
                 mensagemErro("O campo nome tem que conter letras e ter mais de 2 letras");
         }
-           // if(!validaCampoEmail(email)){
-          //      mensagemErro("O campo email tem que conter um @ e deve conter um . depois do @");
-       // }
+            if(!validaCampoEmail(email)){
+                mensagemErro("O campo email tem que conter um @ e deve conter um . depois do @");
+       }
             if(!validaCampoPass(pass)){
                 mensagemErro("O campo password tem que conter pelo menos uma letra maiuscula e uma letra minuscula, ter mais de 8 caracteres, pelo menos um algarismo e pelo menos um caracter especial");
         }
@@ -298,32 +298,16 @@ public class FormRegisto extends javax.swing.JFrame {
     }
     
     private boolean validaCampoEmail(String email) {
-        int x, contador=0, t = email.length();
-        String arroba = "@";
-        String dot = ".";
-        char c;
-        int result;
-        result = email.indexOf(dot);
-        result = email.indexOf(arroba);
-        if(t!=8)
-            return false;
-        else{
-            for(x=0;t!=x;x++){
-                c = email.charAt(x);
-                if(isLetter(c))
-                    contador++;
-            
-                if(result==-1){
-                    return false;
-        }
-                else{
-                    return true;
-        }
-        }
-        }
-        return true;
+        int c = 0 ,  e = email.length() ;
+        if (email.indexOf("@") >= 1 ) {
+        if (email.indexOf(".") >= email.indexOf("@")+2)
+        return true;    
+       }
+        return false; 
+  
     }
-    
+
+
     private boolean validaCampoPass(String pass) {
         int x, contador=0, t = pass.length();
         char c;
