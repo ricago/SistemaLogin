@@ -204,13 +204,10 @@ public class FormRegisto extends javax.swing.JFrame {
             if(!validaCampoMorada(morada)){
                 mensagemErro("O campo morada tem que conter letras e ter mais de 5 letras");
             }
+             if(!validaCampoRePass(rePass,pass)){
+                mensagemErro("O campo Repita password tem que ser igual ao campo password");
+            }
         }
-        
-        
-       
-        
-        
-        
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -310,12 +307,10 @@ public class FormRegisto extends javax.swing.JFrame {
         int x,  t = pass.length() ;
         char c;
         String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?";
-       //String specialChars = "~`!@#$%^&*()-_=+?";        
         boolean numberPresent = false;
         boolean upperCasePresent = false;
         boolean lowerCasePresent = false;
         boolean specialCharacterPresent = false;
-        boolean min = false;
 
     for (x = 0; x < t; x++) {
         c = pass.charAt(x);
@@ -340,7 +335,15 @@ public class FormRegisto extends javax.swing.JFrame {
         return false;
         
 }
-   
+    
+    private boolean validaCampoRePass(String pass, String rePass){
+        if(pass != rePass){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
     private boolean validaCampoMorada(String morada) {
         int x, contador=0, t = morada.length();
         char c;
