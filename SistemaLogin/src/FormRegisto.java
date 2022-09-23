@@ -298,36 +298,49 @@ public class FormRegisto extends javax.swing.JFrame {
     }
     
     private boolean validaCampoEmail(String email) {
-        int c = 0 ,  e = email.length() ;
-        if (email.indexOf("@") >= 1 ) {
-        if (email.indexOf(".") >= email.indexOf("@")+2)
-        return true;    
-       }
-        return false; 
-  
-    }
-
-
-    private boolean validaCampoPass(String pass) {
-        int x, contador=0, t = pass.length();
-        char c;
-        if(t<8)
-            return false;
-        else{
-            for(x=0;x<t;x++){
-                c = pass.charAt(x);
-                if(isUpperCase(c))
-                    contador++;
-                if(isLowerCase(c))
-                    contador++;
-                if(isDigit(c))
-                    contador++;
-            }
-            if(t!=contador)
-                return false;
-        }
-        return true;
+        int x, contador=0, t = email.length();
+       if (email.indexOf('@') >-1 && email.indexOf('.') >-1)
+            return true;
+        return false;
+         
 }
+
+
+    private boolean validaCampoPass (String pass) {
+        int x,  t = pass.length() ;
+        char c;
+        String specialChars = "~`!@#$%^&*()-_=+\\|[{]};:'\",<.>/?";
+       //String specialChars = "~`!@#$%^&*()-_=+?";        
+        boolean numberPresent = false;
+        boolean upperCasePresent = false;
+        boolean lowerCasePresent = false;
+        boolean specialCharacterPresent = false;
+        boolean min = false;
+
+    for (x = 0; x < t; x++) {
+        c = pass.charAt(x);
+        if(t<8){
+            return false;
+        }
+          else if (Character.isDigit(c)) {
+            numberPresent = true;
+        } else if (Character.isUpperCase(c)) {
+            upperCasePresent = true;
+        } else if (Character.isLowerCase(c)) {
+            lowerCasePresent = true;
+        } else if (specialChars.contains(String.valueOf(c))) {
+            specialCharacterPresent = true;
+        }
+    }
+        if(numberPresent==true && upperCasePresent==true && lowerCasePresent==true && specialCharacterPresent==true){
+            
+    
+        return true;
+        }
+        return false;
+        
+}
+   
     private boolean validaCampoMorada(String morada) {
         int x, contador=0, t = morada.length();
         char c;
