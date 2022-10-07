@@ -1,0 +1,6 @@
+Nome: Ricardo
+Email: rica@gmail.com
+Morada: Ruadaminhaasa
+Telefone: 123456789
+Nif: 123456789
+Password: RicardoH123!

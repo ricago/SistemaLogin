@@ -1,11 +1,18 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 import static java.lang.Character.isLowerCase;
 import static java.lang.Character.isUpperCase;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 
 public class FormRegisto extends javax.swing.JFrame {
+    
+    public static Scanner ler = new Scanner(System.in);
 
     public FormRegisto() {
         initComponents();
@@ -33,6 +40,8 @@ public class FormRegisto extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         ctxNif = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        ctxLogin = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Formulário de Registo de Utilizadores");
@@ -65,6 +74,24 @@ public class FormRegisto extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Reescreva Password");
 
+        ctxPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxPasswordActionPerformed(evt);
+            }
+        });
+
+        ctxMorada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxMoradaActionPerformed(evt);
+            }
+        });
+
+        ctxEmail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxEmailActionPerformed(evt);
+            }
+        });
+
         jButton2.setBackground(new java.awt.Color(153, 204, 0));
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton2.setText("VALIDAR DADOS");
@@ -79,6 +106,15 @@ public class FormRegisto extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel8.setText("NIF");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel9.setText("Login");
+
+        ctxLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ctxLoginActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -95,25 +131,28 @@ public class FormRegisto extends javax.swing.JFrame {
                                     .addComponent(jButton2)
                                     .addGap(93, 93, 93)
                                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLabel6)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(ctxRePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jLabel5))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(ctxPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4)
-                                        .addComponent(jLabel3)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel1)
-                                        .addComponent(jLabel8))
-                                    .addGap(109, 109, 109)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(ctxEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(ctxMorada, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(ctxTelefone, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(ctxNome, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
-                                        .addComponent(ctxNif)))
-                                .addComponent(ctxRePassword, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9))
+                                .addGap(109, 109, 109)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(ctxPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                                    .addComponent(ctxEmail)
+                                    .addComponent(ctxMorada)
+                                    .addComponent(ctxTelefone)
+                                    .addComponent(ctxNome, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                                    .addComponent(ctxNif, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ctxLogin)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(223, 223, 223)
                         .addComponent(jLabel7)))
@@ -141,16 +180,23 @@ public class FormRegisto extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(ctxTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(ctxMorada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(ctxNif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(ctxNif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8)))
                     .addComponent(ctxEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
+                        .addComponent(jLabel9))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(ctxLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(ctxPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(ctxRePassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -208,9 +254,51 @@ public class FormRegisto extends javax.swing.JFrame {
             mensagemErro("As passawords não coincidem");                                                                                                                                                                                                                                                                                                                                                                                                                                     
         }
         }
+           
+        File ficheiro = new File(nome+".txt");
+       
+        try {
+         if(!ficheiro.exists()){
+            ficheiro.createNewFile();
+            
+        }
+        FileWriter fw = new FileWriter(ficheiro);
+                BufferedWriter bw = new BufferedWriter(fw);
+                bw.write("Nome: "+nome);
+                bw.newLine();
+                bw.write("Email: "+email);
+                bw.newLine();
+                bw.write("Morada: "+morada);
+                bw.newLine();
+                bw.write("Telefone: "+telefone);
+                bw.newLine();
+                bw.write("Nif: "+nif);
+                bw.newLine();
+                bw.write("Password: "+pass);
+                bw.close();
+                fw.close();
+        }catch (IOException ex) {
+                ex.printStackTrace();
+            }
         
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void ctxLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxLoginActionPerformed
+
+    }//GEN-LAST:event_ctxLoginActionPerformed
+
+    private void ctxEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ctxEmailActionPerformed
+
+    private void ctxPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxPasswordActionPerformed
+        // TODO add yur handling code here:
+    }//GEN-LAST:event_ctxPasswordActionPerformed
+
+    private void ctxMoradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxMoradaActionPerformed
+
+    }//GEN-LAST:event_ctxMoradaActionPerformed
 
    
     public static void main(String args[]) {
@@ -242,6 +330,7 @@ public class FormRegisto extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField ctxEmail;
+    private javax.swing.JTextField ctxLogin;
     private javax.swing.JTextField ctxMorada;
     private javax.swing.JTextField ctxNif;
     private javax.swing.JTextField ctxNome;
@@ -258,6 +347,7 @@ public class FormRegisto extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
 
     private boolean validaCampoNumerico(String valor) {
@@ -345,19 +435,18 @@ public class FormRegisto extends javax.swing.JFrame {
     }*/
     
     private boolean validaCampoMorada(String morada) {
-        int x, contador=0, t = morada.length();
-        char c;
-        if(t<5)
-            return false;
-        else{
-            for(x=0;x<t;x++){
-                c = morada.charAt(x);
-                if(isLetter(c))
-                    contador++;
-            }
-            if(t!=contador)
-                return false;
-        }
-        return true;
+       int y, contador = 0, mo = morada.length();
+       char c;
+       if(mo<5)
+           return false;
+       else{
+           for (y=0;y<mo;y++){
+               c = morada.charAt(y);
+               if(isLetter(c))
+                   contador++;
+           }
+       }
+       return true;
     }
+    
 }
