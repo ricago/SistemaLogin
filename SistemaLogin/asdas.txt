@@ -1,7 +1,0 @@
-Password: RicardoH123!
-Login: ricas
-Nome: asdas
-Email: dasddas@dad.com
-Morada: dasdadasdas
-Telefone: 123456789
-Nif: 123456789

@@ -1,7 +1,0 @@
-Password: RicardoH123!
-Login: Ricas
-Nome: sdasdas
-Email: sadasdasdas@sda.css
-Morada: dasdadsadas
-Telefone: 123456789
-Nif: 123456789
