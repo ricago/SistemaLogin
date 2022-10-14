@@ -1,7 +1,7 @@
 Password: RicardoH123!
 Login: Ricas
-Nome: Ricardo
-Email: dasadsads@ffs.cwsa
-Morada: dasdadadasda
+Nome: sdasdas
+Email: sadasdasdas@sda.css
+Morada: dasdadsadas
 Telefone: 123456789
 Nif: 123456789

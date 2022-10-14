@@ -97,9 +97,10 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VisualizarDadosUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarDadosUtilizadorActionPerformed
-        //String nome = ctxNome.getText();
+      //  Login log = new Login();
         System.out.println("Insira o nome de utilizador a verificar :");
-        File ficheiro = new File (nome+".txt");
+        String login = FormRegisto.ler.nextLine();
+        File ficheiro = new File (login +".txt");
         if(!ficheiro.exists()){
             System.out.println("O utilizador não existe");
         }else{     
@@ -133,7 +134,7 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        System.exit(0);
     }//GEN-LAST:event_jButton7ActionPerformed
 
    

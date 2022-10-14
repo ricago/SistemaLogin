@@ -1,4 +1,11 @@
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
+
 
 public class Login extends javax.swing.JFrame {
 
@@ -118,7 +125,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void ctxLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ctxLoginActionPerformed
-        // TODO add your handling code here:
+        login = ctxLogin.getText();
     }//GEN-LAST:event_ctxLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -126,9 +133,34 @@ public class Login extends javax.swing.JFrame {
         //verificar se a password corresponde a pass q esta no ficheiro
         //segue para jframeform menuoptions
         //se login e password corretos faz isto que se segue
-        MenuOpcoes mo = new MenuOpcoes();
-        this.setVisible(false);
-        mo.setVisible(true);
+        File ficheiro = new File (login +".txt");
+        if(ficheiro.exists()){
+            try{   
+                FileReader fr = new FileReader (ficheiro);
+                BufferedReader br = new BufferedReader (fr);
+               // String linha = br.readLine();
+                if(MenuOpcoes.linha = FormRegisto.pass){
+                    
+                MenuOpcoes mo = new MenuOpcoes();
+                this.setVisible(false);
+                mo.setVisible(true);
+
+                }     
+            }
+            catch (FileNotFoundException ex) {
+                    ex.printStackTrace();
+            }        
+            catch (IOException ioe) {
+                
+            }
+            MenuOpcoes mo = new MenuOpcoes();
+            this.setVisible(false);
+            mo.setVisible(true);
+        
+        }
+        else{
+            System.out.println("O utilizador não existe");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

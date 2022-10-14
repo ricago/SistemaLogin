@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 public class FormRegisto extends javax.swing.JFrame {
     
     public static Scanner ler = new Scanner(System.in);
-
+    
     public FormRegisto() {
         initComponents();
     }
@@ -227,35 +227,36 @@ public class FormRegisto extends javax.swing.JFrame {
         String morada = ctxMorada.getText();
         String telefone = ctxTelefone.getText();
         String nif = ctxNif.getText();
+        String login = ctxLogin.getText();
         String pass = ctxPassword.getText();
         String rePass = ctxRePassword.getText();
         if(nome.equals("")|| email.equals("")|| morada.equals("")|| telefone.equals("")|| nif.equals("") || pass.equals("") || rePass.equals("")){
             mensagemErro("Preencha todos os campos");   
-        }else{
-            if(!validaCampoNumerico(telefone)){
+        }
+        else if(!validaCampoNumerico(telefone)){
                 mensagemErro("O campo telefone tem de ser numerico e ter 9 digitos");   
             }
-            if(!validaCampoNumerico(nif)){
+        else if(!validaCampoNumerico(nif)){
                 mensagemErro("O campo nif tem de ser numerico e ter 9 digitos");
         }
-            if(!validaCampoAlfabeto(nome)){
+        else if(!validaCampoAlfabeto(nome)){
                 mensagemErro("O campo nome tem que conter letras e ter mais de 2 letras");
         }
-            if(!validaCampoEmail(email)){
+        else if(!validaCampoEmail(email)){
                 mensagemErro("O campo email tem que conter um @ e deve conter um . depois do @");
        }
-            if(!validaCampoPass(pass)){
+        else if(!validaCampoPass(pass)){
                 mensagemErro("O campo password tem que conter pelo menos uma letra maiuscula e uma letra minuscula, ter mais de 8 caracteres, pelo menos um algarismo e pelo menos um caracter especial");
         }
-            if(!validaCampoMorada(morada)){
+        else if(!validaCampoMorada(morada)){
                 mensagemErro("O campo morada tem que conter letras e ter mais de 5 letras");
             }
-             if (!pass.equals(rePass)){
+        else if (!pass.equals(rePass)){
             mensagemErro("As passawords não coincidem");                                                                                                                                                                                                                                                                                                                                                                                                                                     
         }
-        }
-           
-        File ficheiro = new File(nome+".txt");
+        
+        else{   
+        File ficheiro = new File(login+".txt");
        
         try {
          if(!ficheiro.exists()){
@@ -264,6 +265,10 @@ public class FormRegisto extends javax.swing.JFrame {
         }
         FileWriter fw = new FileWriter(ficheiro);
                 BufferedWriter bw = new BufferedWriter(fw);
+                bw.write("Password: "+pass);
+                bw.newLine();
+                bw.write("Login: "+login);
+                bw.newLine();
                 bw.write("Nome: "+nome);
                 bw.newLine();
                 bw.write("Email: "+email);
@@ -273,14 +278,17 @@ public class FormRegisto extends javax.swing.JFrame {
                 bw.write("Telefone: "+telefone);
                 bw.newLine();
                 bw.write("Nif: "+nif);
-                bw.newLine();
-                bw.write("Password: "+pass);
                 bw.close();
                 fw.close();
+                
+                Login lo = new Login();
+                this.setVisible(false);
+                lo.setVisible(true);
+                
         }catch (IOException ex) {
                 ex.printStackTrace();
             }
-        
+        }
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
