@@ -13,6 +13,8 @@ import javax.swing.JOptionPane;
 public class FormRegisto extends javax.swing.JFrame {
     
     public static Scanner ler = new Scanner(System.in);
+    public static String pass;
+    public static String login;
     
     public FormRegisto() {
         initComponents();
@@ -227,8 +229,8 @@ public class FormRegisto extends javax.swing.JFrame {
         String morada = ctxMorada.getText();
         String telefone = ctxTelefone.getText();
         String nif = ctxNif.getText();
-        String login = ctxLogin.getText();
-        String pass = ctxPassword.getText();
+        login = ctxLogin.getText();
+        pass = ctxPassword.getText();
         String rePass = ctxRePassword.getText();
         if(nome.equals("")|| email.equals("")|| morada.equals("")|| telefone.equals("")|| nif.equals("") || pass.equals("") || rePass.equals("")){
             mensagemErro("Preencha todos os campos");   
@@ -265,7 +267,7 @@ public class FormRegisto extends javax.swing.JFrame {
         }
         FileWriter fw = new FileWriter(ficheiro);
                 BufferedWriter bw = new BufferedWriter(fw);
-                bw.write("Password: "+pass);
+                bw.write(pass);
                 bw.newLine();
                 bw.write("Login: "+login);
                 bw.newLine();

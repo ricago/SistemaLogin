@@ -1,13 +1,17 @@
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import javax.swing.JOptionPane;
 
 
 public class MenuOpcoes extends javax.swing.JFrame {
 
+    public static String linha;
     
     public MenuOpcoes() {
         initComponents();
@@ -97,7 +101,6 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VisualizarDadosUtilizadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VisualizarDadosUtilizadorActionPerformed
-      //  Login log = new Login();
         System.out.println("Insira o nome de utilizador a verificar :");
         String login = FormRegisto.ler.nextLine();
         File ficheiro = new File (login +".txt");
@@ -108,7 +111,8 @@ public class MenuOpcoes extends javax.swing.JFrame {
                 FileReader fr = new FileReader (ficheiro);
                 BufferedReader br = new BufferedReader (fr);
                 while (br.ready()){
-                    String linha = br.readLine ();
+                    System.out.println("");
+                    linha = br.readLine ();
                     System.out.println (linha);
                 }
                 br.close();
@@ -122,15 +126,44 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_VisualizarDadosUtilizadorActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        //FormRegisto.login = FormRegisto.ler.nextLine();
+        //System.out.println("Digite o utilizador ");
+       String file = Login.login+".txt";
+        File ficheiro = new File (file); 
+       // System.out.println(ficheiro);
+            if(ficheiro.exists()){         
+               ficheiro.delete();
+                
+                System.out.println ("O utilizador foi apagado com sucesso!");
+               
+             }
+            else{
+                JOptionPane.showConfirmDialog(null, "Utilizador não existe", "Erro", JOptionPane.ERROR_MESSAGE);
+            }   
+                
+                Login lo = new Login();
+                lo.setVisible(true);
+                this.dispose();
+           
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+         EditaUser ed = new EditaUser();
+                ed.setVisible(true);
+                this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        File ficheiro = new File ("C:\\Users\\rhenriques\\Desktop\\Java\\MDS_Testes\\login\\SistemaLogin\\SistemaLogin");
+        File [] lista = ficheiro.listFiles();
+        System.out.println(">>> Lista de Ficheiros <<<");
+        for (int x=0; x<lista.length; x++){ 
+            String valor = " ";
+            valor = (lista[x].toString());
+            if (valor.endsWith (".txt")){
+            System.out.println(lista[x].getName());
+            }
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
