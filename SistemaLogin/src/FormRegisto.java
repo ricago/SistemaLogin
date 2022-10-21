@@ -7,7 +7,10 @@ import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 import static java.lang.Character.isLowerCase;
 import static java.lang.Character.isUpperCase;
+import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class FormRegisto extends javax.swing.JFrame {
@@ -283,12 +286,16 @@ public class FormRegisto extends javax.swing.JFrame {
                 bw.close();
                 fw.close();
                 
+                LigaBD.registaUtilizador(nome, email, morada, Integer.parseInt(telefone),  Integer.parseInt(nif) , login, pass);
+                
                 Login lo = new Login();
                 this.setVisible(false);
                 lo.setVisible(true);
                 
         }catch (IOException ex) {
                 ex.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(FormRegisto.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         
@@ -434,15 +441,6 @@ public class FormRegisto extends javax.swing.JFrame {
         return false;
         
 }
-    
-   /* private boolean validaCampoRePass(String pass, String rePass){
-        if(pass != rePass){
-            return false;
-        }
-        else{
-            return true;
-        }
-    }*/
     
     private boolean validaCampoMorada(String morada) {
        int y, contador = 0, mo = morada.length();
