@@ -36,4 +36,23 @@ public class LigaBD {
         ps.setString(7,password);
         ps.execute();
     }
+
+    static void atualizaUtilizador(String nome, String email, String morada, String telefone, String nif, String pass) {
+        
+        String sql = "UPDATE utilizador SET nome=?,email=?,morada=?, WHERE telefone=?,nif=?, SET login=?,password=?";
+        ps = EditaUser.conn.prepareStatement(sql);
+        ps.setString(1,nome);
+        ps.setString(1,nome);
+        ps.setString(1,nome);
+        ps.setint(2,codigo);
+        ps.setint(2,codigo);
+        ps.setString(1,nome);
+        ps.setString(1,nome);
+        int retorno = ps.executeUpdate();
+        if(retorno>0){
+            System.out.println("Novo registo alterado");   
+        }else{
+            System.out.println("Não foi possivel alterar os registos");
+        }
+    }
 }

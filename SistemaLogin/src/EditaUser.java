@@ -10,6 +10,10 @@ import static java.lang.Character.isDigit;
 import static java.lang.Character.isLetter;
 import static java.lang.Character.isLowerCase;
 import static java.lang.Character.isUpperCase;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -18,11 +22,13 @@ import javax.swing.JOptionPane;
 public class EditaUser extends javax.swing.JFrame {
 
     
-    public EditaUser() {
+    public EditaUser(){
         initComponents();
             preencheFormulario();
-                
-    }
+            preencheBD();
+        }
+    
+
 
     
     @SuppressWarnings("unchecked")
@@ -271,7 +277,7 @@ public class EditaUser extends javax.swing.JFrame {
             if(!pass.equals(rePass))
             mensagemErro("passwords têm de coincidir");
         }
-        //String ctx_user = ctxRegisto.getText();
+        
         File ficheiro = new File(login+".txt");
 
         try {
@@ -301,6 +307,7 @@ public class EditaUser extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(FormRegisto.class.getName()).log(Level.SEVERE, null, ex);
         }
+        LigaBD.atualizaUtilizador(nome,email,morada,telefone,nif,pass);
 
     }//GEN-LAST:event_ctxRegistoActionPerformed
 
@@ -350,16 +357,19 @@ public class EditaUser extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EditaUser().setVisible(true);
-            }
+                
+                    new EditaUser().setVisible(true);
+                
+                }
+            
         });
     }
-     private void preencheFormulario() {
+    private void preencheFormulario() {
     int cont = 0;
     String[] lista = new String [8];
     FileReader fr;
-      
-            
+    
+           
         try {
             fr = new FileReader(Login.login+".txt");
              BufferedReader br = new BufferedReader(fr);
@@ -520,4 +530,32 @@ public class EditaUser extends javax.swing.JFrame {
         }
         return true;
     }
+
+    private void preencheBD(){
+        Connection conn = LigaBD.ligacao();
+            java.sql.Connection c = LigaBD.ligacao(); 
+        String sql = "SELECT * FROM utilizador WHERE login = '"+Login.login+"'"; 
+        PreparedStatement ps;
+        
+        try {
+            ps = c.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery(); 
+         
+        while(rs.next()){ 
+            ctxNome.setText(rs.getString(2)); 
+            ctxEmail.setText(rs.getString(3)); 
+            ctxMorada.setText(rs.getString(4)); 
+            ctxTelefone.setText(""+rs.getInt(5)); 
+            ctxNif.setText(""+rs.getInt(6)); 
+            ctxUser.setText(rs.getString(7)); 
+            ctxPassword.setText(rs.getString(8));
+            ctxRePassword.setText(rs.getString(8));
+             
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(EditaUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       
+            
+             }
 }

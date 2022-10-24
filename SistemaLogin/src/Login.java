@@ -10,6 +10,10 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
 
    public static String login;
+
+    static void setText(String string) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
     
     public Login() {
         initComponents();
@@ -134,10 +138,6 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_ctxLoginActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //verificar se existe ficheiro login.txt
-        //verificar se a password corresponde a pass q esta no ficheiro
-        //segue para jframeform menuoptions
-        //se login e password corretos faz isto que se segue
         login = ctxLogin.getText();
         String pass = ctxPassword.getText();
         File ficheiro = new File (login +".txt");
