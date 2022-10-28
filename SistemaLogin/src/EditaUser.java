@@ -307,7 +307,7 @@ public class EditaUser extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(FormRegisto.class.getName()).log(Level.SEVERE, null, ex);
         }
-        LigaBD.atualizaUtilizador(nome,email,morada,telefone,nif,pass);
+        LigaBD.atualizaUtilizador(nome,email,morada,telefone,nif,login,pass);
 
     }//GEN-LAST:event_ctxRegistoActionPerformed
 

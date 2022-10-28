@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 
 public class MenuOpcoes extends javax.swing.JFrame {
@@ -128,9 +129,8 @@ public class MenuOpcoes extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         //FormRegisto.login = FormRegisto.ler.nextLine();
         //System.out.println("Digite o utilizador ");
-       String file = Login.login+".txt";
+      /* String file = Login.login+".txt";
         File ficheiro = new File (file); 
-       // System.out.println(ficheiro);
             if(ficheiro.exists()){         
                ficheiro.delete();
                 
@@ -143,7 +143,18 @@ public class MenuOpcoes extends javax.swing.JFrame {
                 
                 Login lo = new Login();
                 lo.setVisible(true);
-                this.dispose();
+                this.dispose();*/
+      
+      DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
+        if (jTable1.getSelectedRow() >= 0){
+            int i =JOptionPane.showConfirmDialog(null,"Pretende Remover", "Tem a Certeza?", JOptionPane.YES_NO_OPTION);
+            if(i==JOptionPane.YES_OPTION){
+            	int p = (int)jTable1.getValueAt(jTable1.getSelectedRow(),0);
+        	LigaBD.remove(p);
+            }    
+        }else{
+            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
+        }
            
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -154,7 +165,7 @@ public class MenuOpcoes extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        File ficheiro = new File ("C:\\Users\\rhenriques\\Desktop\\Java\\MDS_Testes\\login\\SistemaLogin\\SistemaLogin");
+        /*File ficheiro = new File ("C:\\Users\\rhenriques\\Desktop\\Java\\MDS_Testes\\login\\SistemaLogin\\SistemaLogin");
         File [] lista = ficheiro.listFiles();
         System.out.println(">>> Lista de Ficheiros <<<");
         for (int x=0; x<lista.length; x++){ 
@@ -163,7 +174,11 @@ public class MenuOpcoes extends javax.swing.JFrame {
             if (valor.endsWith (".txt")){
             System.out.println(lista[x].getName());
             }
-        }
+        }*/
+        
+        MostraRegisto mr = new MostraRegisto();
+        mr.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
