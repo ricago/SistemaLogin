@@ -60,8 +60,19 @@ public class LigaBD {
             System.out.println("Não foi possivel alterar os registos");
         }
 
+        }catch (SQLException ex) {
+            Logger.getLogger(LigaBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    static void remove(String p) {
+        Connection con = ligacao();
+        try {
+            PreparedStatement ps = con.prepareStatement(p);
+            ps.execute();
         } catch (SQLException ex) {
             Logger.getLogger(LigaBD.class.getName()).log(Level.SEVERE, null, ex);
         }
-            }
+        
+    }
 }

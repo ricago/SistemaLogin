@@ -145,21 +145,17 @@ public class MenuOpcoes extends javax.swing.JFrame {
                 lo.setVisible(true);
                 this.dispose();*/
       
-      DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
-        if (jTable1.getSelectedRow() >= 0){
-            int i =JOptionPane.showConfirmDialog(null,"Pretende Remover", "Tem a Certeza?", JOptionPane.YES_NO_OPTION);
-            if(i==JOptionPane.YES_OPTION){
-            	int p = (int)jTable1.getValueAt(jTable1.getSelectedRow(),0);
-        	LigaBD.remove(p);
-            }    
-        }else{
-            JOptionPane.showMessageDialog(null, "Favor selecionar uma linha");
-        }
+     
+//      MostraRegisto mo = new MostraRegisto();
+//      mo.setVisible(true);
+ //     this.setVisible(false);
+ 
+           LigaBD.remove("Delete from utilizador WHERE login ='"+Login.login+ "'");
            
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-         EditaUser ed = new EditaUser();
+        EditaUser ed = new EditaUser();
                 ed.setVisible(true);
                 this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
